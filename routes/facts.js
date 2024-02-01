@@ -74,50 +74,50 @@ router.post("/", async (req, res) => {
 // -----------------------------PUT REquest----------------------------
 
 //update an idea
-// router.put("/:id", (req, res) => {
-//   const idToUpdate = +req.params.id;
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedFact = await Fact.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          tag: req.body.tag,
+          text: req.body.text,
+        },
+      },
+      {
+        new: true,
+      }
+    );
 
-//   const idea = facts.find((idea) => {
-//     return idea.id === idToUpdate;
-//   });
-
-//   if (idea) {
-//     res.send({
-//       success: true,
-//       data: {
-//         ...idea,
-//         text: req.body.text || idea.text,
-//         tag: req.body.tag || idea.tag,
-//         date: Date.now(),
-//       },
-//     });
-//   }
-
-//   res.status(404).json({
-//     success: false,
-//     error: "Idea not found",
-//   });
-// });
+    res.json({
+      success: true,
+      data: updatedFact,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      error: "Something went wrong",
+    });
+  }
+});
 
 //delete an idea
-// router.delete("/:id", (req, res) => {
-//   const idToDelete = +req.params.id;
-
-//   // Find the index of the idea to delete
-//   const indexToDelete = facts.findIndex((idea) => idea.id === idToDelete);
-
-//   if (indexToDelete === -1) {
-//     // Idea with the given ID not found
-//     return res.status(404).json({ error: "Idea not found" });
-//   }
-
-//   // Perform the deletion
-//   const deletedIdea = facts.splice(indexToDelete, 1);
-
-//   res.json({ message: "Idea deleted successfully", deletedIdea });
-
-//   console.log(indexToDelete);
-// });
+router.delete("/:id", async (req, res) => {
+  try {
+    await Fact.findByIdAndDelete(req.params.id);
+    res.json({
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      error: "Something went wrong",
+    });
+  }
+});
 
 //exporting the router as we are using this in the main app to connect it with its associated files based on the user hit url path
 module.exports = router;
