@@ -29,10 +29,6 @@ Welcome to the Random Band Facts App! This is my first beginner full-stack appli
 - Node.js and npm installed on your machine
 - MongoDB installed locally or connection to a MongoDB Atlas cluster
 
-### Contributing
-
-Contributions are welcome! If you have a new band fact to share or want to improve the app, feel free to submit a pull request.
-
 ### License
 
 This project is licensed under the MIT License.
