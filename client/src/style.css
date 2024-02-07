@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
+
+body {
+  font-family: "Protest Riot", sans-serif;
+}
+
+.card-wrapper {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.card {
+  @apply rounded-lg bg-white p-6 shadow-lg text-lg;
+}
+
+.modal {
+  @apply fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50  justify-center items-center;
+}
+
+.user-profile-box {
+  @apply text-white rounded-full h-8 w-8 flex items-center justify-center;
+}
+
+.text-label {
+  @apply block  font-semibold mb-2;
+}
+
+.user-name {
+  @apply text-zinc-500;
+}
+
+.title {
+  @apply text-sky-700;
+}
+
+.paragraph {
+  @apply text-zinc-700;
+}
+
+.tag {
+  @apply rounded-lg px-6 py-2 text-sm text-white;
+}
+
+.btn {
+  @apply text-white bg-blue-600 flex border-0 py-2 px-8 focus:outline-none hover:bg-blue-500 rounded text-lg;
+}
+
+.btn-delete {
+  @apply absolute -top-2 -right-2 bg-red-300 text-white rounded-full flex items-center  justify-center h-5 w-5;
+}
+
+.form-input,
+.form-textarea {
+  @apply border border-gray-300 rounded-md p-1;
+}
+
+.tag-blue {
+  @apply bg-[#4299e1]; /*blue */
+}
+.tag-gray {
+  @apply bg-[#6b7280]; /*gray */
+}
+.tag-green {
+  @apply bg-[#10b981]; /*green */
+}
+.tag-yellow {
+  @apply bg-[#f59e0b]; /*yellow */
+}
+.tag-red {
+  @apply bg-[#ef4444]; /*red */
+}
+.tag-purple {
+  @apply bg-[#6d28d9]; /*purple */
+}

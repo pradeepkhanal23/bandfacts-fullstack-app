@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>BandFacts FullStack App</title>
+  <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
+  <body class="bg-[#f5f5f5]">
+    <main class="mx-auto px-4 py-8">
+      <h1 class="mb-8 text-5xl font-bold text-center title">Band Facts</h1>
+      <p class="text-center mb-8 max-w-4xl text-2xl mx-auto paragraph">
+        Band Facts is an app where users can share interesting facts about their
+        favorite bands. From iconic albums to legendary performances, discover
+        fascinating trivia about the music industry's most influential
+        personalities.
+      </p>
+
+      <!-- Cards Section -->
+      <section class="card-wrapper p-3">
+        <!-- Card 1 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span
+                class="tag-blue text-white rounded-full h-8 w-8 flex items-center justify-center"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">Metallicahead </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            Metallica's self-titled album, commonly known as the "Black Album,"
+            is one of the best-selling albums of all time.
+          </p>
+          <span class="tag tag-blue">Metal</span>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span class="tag-gray user-profile-box"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">The Beatles </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            The Beatles hold the record for the most number-one hits on the
+            Billboard Hot 100 chart.
+          </p>
+          <span class="tag tag-gray">Rock</span>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span class="tag-green user-profile-box"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">Led Zeppelin </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            Led Zeppelin's "Stairway to Heaven" is often considered one of the
+            greatest rock songs of all time.
+          </p>
+          <span class="tag tag-green">Classic Rock</span>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span class="tag-yellow user-profile-box"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">Nirvana </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            Nirvana's "Smells Like Teen Spirit" is often credited with
+            popularizing grunge music.
+          </p>
+          <span class="tag tag-yellow">Grunge</span>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span class="tag-red user-profile-box"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">Queen </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            Queen's "Bohemian Rhapsody" is considered one of the greatest rock
+            songs of all time.
+          </p>
+          <span class="tag tag-red">Rock</span>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="card relative">
+          <div class="mb-4 flex justify-between">
+            <div class="flex items-center gap-2">
+              <span class="tag-purple user-profile-box"
+                ><i class="fa-regular fa-user"></i
+              ></span>
+              <span class="user-name">Pink Floyd </span>
+            </div>
+            <span>Feb 7, 2024</span>
+            <button class="btn-delete cursor-pointer">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="mb-3 paragraph">
+            Pink Floyd's album "The Dark Side of the Moon" spent over 900 weeks
+            on the Billboard 200 chart.
+          </p>
+          <span class="tag tag-purple">Progressive Rock</span>
+        </article>
+      </section>
+
+      <button class="btn mx-auto my-5">Create new Fact</button>
+
+      <!-- Modal -->
+      <section id="myModal" class="modal hidden">
+        <!-- Modal content -->
+        <div class="bg-white p-8 rounded-lg shadow-lg min-w-96">
+          <div class="mb-4">
+            <h2 class="text-2xl font-semibold text-center">Create Band Fact</h2>
+          </div>
+          <form id="fact-form">
+            <div class="mb-4">
+              <label for="username" class="text-label">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-input w-full"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="text" class="text-label">Text</label>
+              <textarea
+                id="text"
+                name="text"
+                class="form-textarea w-full"
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="tag" class="text-label">Tag</label>
+              <input
+                type="text"
+                id="tag"
+                name="tag"
+                class="form-input w-full"
+              />
+            </div>
+            <div class="text-center mt-3">
+              <button
+                id="submitBtn"
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
