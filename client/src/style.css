@@ -21,7 +21,7 @@ body {
 }
 
 .user-profile-box {
-  @apply text-white rounded-full h-8 w-8 flex items-center justify-center;
+  @apply text-white rounded-full p-4  h-5 w-5 flex items-center justify-center;
 }
 
 .text-label {
@@ -29,7 +29,11 @@ body {
 }
 
 .user-name {
-  @apply text-zinc-500;
+  @apply text-zinc-500 tracking-tight;
+}
+
+.timestamp {
+  @apply px-1  flex items-center justify-center text-sm rounded-md bg-[#6b7280] text-white;
 }
 
 .title {
@@ -41,7 +45,7 @@ body {
 }
 
 .tag {
-  @apply rounded-lg px-6 py-2 text-sm text-white;
+  @apply rounded-lg px-6 py-2 text-sm tracking-wide text-white;
 }
 
 .btn {
@@ -57,21 +61,50 @@ body {
   @apply border border-gray-300 rounded-md p-1;
 }
 
-.tag-blue {
-  @apply bg-[#4299e1]; /*blue */
+.tag-rock {
+  @apply bg-[#4299e1]; /* Blue */
 }
-.tag-gray {
-  @apply bg-[#6b7280]; /*gray */
+
+.tag-pop {
+  @apply bg-[#6b7280]; /* Gray */
 }
-.tag-green {
-  @apply bg-[#10b981]; /*green */
+
+.tag-jazz {
+  @apply bg-[#10b981]; /* Green */
 }
-.tag-yellow {
-  @apply bg-[#f59e0b]; /*yellow */
+
+.tag-hiphop {
+  @apply bg-[#f59e0b]; /* Yellow */
 }
-.tag-red {
-  @apply bg-[#ef4444]; /*red */
+
+.tag-rnb {
+  @apply bg-[#ef4444]; /* Red */
 }
-.tag-purple {
-  @apply bg-[#6d28d9]; /*purple */
+
+.tag-metal {
+  @apply bg-[#6d28d9]; /* Purple */
+}
+
+.tag-punk {
+  @apply bg-[#ec4899]; /* Pink */
+}
+
+.tag-reggae {
+  @apply bg-[#fb923c]; /* Orange */
+}
+
+.tag-country {
+  @apply bg-[#22d3ee]; /* Cyan */
+}
+
+.tag-funk {
+  @apply bg-[#14b8a6]; /* Teal */
+}
+
+.tag-folk {
+  @apply bg-[#6366f1]; /* Indigo */
+}
+
+.tag-black {
+  @apply bg-gray-700;
 }
