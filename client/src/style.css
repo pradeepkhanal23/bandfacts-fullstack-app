@@ -29,7 +29,7 @@ body {
 }
 
 .user-name {
-  @apply text-zinc-500 tracking-tight;
+  @apply text-zinc-500 tracking-tight capitalize;
 }
 
 .timestamp {
@@ -45,7 +45,7 @@ body {
 }
 
 .tag {
-  @apply rounded-lg px-6 py-2 text-sm tracking-wide text-white;
+  @apply rounded-lg px-6 py-2 text-sm tracking-wide text-white capitalize;
 }
 
 .btn {
@@ -77,32 +77,20 @@ body {
   @apply bg-[#f59e0b]; /* Yellow */
 }
 
-.tag-rnb {
+.tag-metal {
   @apply bg-[#ef4444]; /* Red */
 }
 
-.tag-metal {
+.tag-punkrock {
   @apply bg-[#6d28d9]; /* Purple */
 }
 
-.tag-punk {
+.tag-reggae {
   @apply bg-[#ec4899]; /* Pink */
 }
 
-.tag-reggae {
-  @apply bg-[#fb923c]; /* Orange */
-}
-
-.tag-country {
-  @apply bg-[#22d3ee]; /* Cyan */
-}
-
-.tag-funk {
+.tag-grunge {
   @apply bg-[#14b8a6]; /* Teal */
-}
-
-.tag-folk {
-  @apply bg-[#6366f1]; /* Indigo */
 }
 
 .tag-black {

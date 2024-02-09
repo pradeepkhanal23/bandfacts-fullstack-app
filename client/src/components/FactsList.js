@@ -1,23 +1,30 @@
-import { facts } from "../data";
+import FactsApiService from "../services/factsApiService";
 
 class FactsList {
   constructor() {
-    this.facts = facts;
+    this.facts = [];
     this.cardContainer = document.querySelector("#card-container");
+    this.getFacts();
     this.availableTags = new Set([
       "rock",
       "pop",
       "jazz",
       "hiphop",
-      "rnb",
       "metal",
-      "punk",
+      "punkrock",
       "reggae",
-      "classic",
-      "funk",
-
-      "folk",
+      "grunge",
     ]);
+  }
+
+  async getFacts() {
+    try {
+      const res = await FactsApiService.getFacts();
+      this.facts = res.data.data;
+      this.render();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getTagClass(tag) {
@@ -31,6 +38,11 @@ class FactsList {
     return tagClass;
   }
 
+  addFactToTheList(fact) {
+    this.facts.push(fact);
+    this.render();
+  }
+
   render() {
     let cardsHTML = ""; // instead of overwriting everytime, we initialize a varaible called cardsHTML for all cards to be accumulated and displayed
     this.facts.map((fact) => {
@@ -42,14 +54,14 @@ class FactsList {
           <div class="mb-4 flex justify-between">
             <div class="flex  items-center gap-2">
               <span class="${tagClass} user-profile-box"><i class="fa-regular fa-user"></i></span>
-              <span class="user-name">${username}</span>
+              <span class="user-name ">${username}</span>
             </div>
             <span class="timestamp">${date}</span>
             <button class="btn-delete cursor-pointer">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-          <p class="paragraph mb-3">${text}</p>
+          <p class="paragraph mb-3 ">${text}</p>
           <span class="tag ${tagClass}">${tag}</span>
         </article>
     `;

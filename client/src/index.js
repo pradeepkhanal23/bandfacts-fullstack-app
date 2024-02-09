@@ -3,9 +3,7 @@ import Modal from "./components/Modal";
 import Form from "./components/Form";
 import FactsList from "./components/FactsList";
 
-const modal = new Modal();
+new Modal();
 const form = new Form();
 form.render();
-
-const factsList = new FactsList();
-factsList.render();
+new FactsList();

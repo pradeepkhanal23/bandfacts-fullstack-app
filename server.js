@@ -30,7 +30,7 @@ app.use(express.json());
 //Applying cors origin for resource sharing
 app.use(
   cors({
-    origin: ["https://localhost:8000", "https://localhost:8888"],
+    origin: ["http://localhost:8000", "http://localhost:8888"],
     credentials: true,
   })
 );

@@ -26,6 +26,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "mini-css-extract-plugin": "^2.8.0"
   }
 }
