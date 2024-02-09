@@ -9,14 +9,14 @@ Welcome to the Random Band Facts App! This is my first beginner full-stack appli
 - **Add New Facts:** Contribute to the collection by submitting your own band facts.
 - **Explore:** View all available facts and learn more about your favorite bands.
 
-## Technologies Used (Not FInalised Yet)
+## Technologies Used
 
 - **Frontend:**
 
-  -HTML
-  -Tailwind CSS
-  -Vanilla JS
-  -Webpack Dev Environment
+  - HTML
+  - Tailwind CSS
+  - Vanilla JS
+  - Webpack Dev Environment
 
 - **Backend:**
   - Node.js
