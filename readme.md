@@ -6,7 +6,6 @@ Welcome to the Random Band Facts App! This is my first beginner full-stack appli
 
 ## Features
 
-- **Random Band Facts:** Receive random facts about different bands with each request.
 - **Add New Facts:** Contribute to the collection by submitting your own band facts.
 - **Explore:** View all available facts and learn more about your favorite bands.
 
@@ -14,7 +13,10 @@ Welcome to the Random Band Facts App! This is my first beginner full-stack appli
 
 - **Frontend:**
 
-  -Yet to add
+  -HTML
+  -Tailwind CSS
+  -Vanilla JS
+  -Webpack Dev Environment
 
 - **Backend:**
   - Node.js
