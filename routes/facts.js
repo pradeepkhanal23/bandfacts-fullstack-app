@@ -76,22 +76,33 @@ router.post("/", async (req, res) => {
 //update an idea
 router.put("/:id", async (req, res) => {
   try {
-    const updatedFact = await Fact.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          tag: req.body.tag,
-          text: req.body.text,
-        },
-      },
-      {
-        new: true,
-      }
-    );
+    const fact = await Fact.findById(req.params.id);
 
-    res.json({
-      success: true,
-      data: updatedFact,
+    //Checking if the user is authorized to update the fact
+    if (fact.username === req.body.username) {
+      const updatedFact = await Fact.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: {
+            tag: req.body.tag,
+            text: req.body.text,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+
+      return res.json({
+        success: true,
+        data: updatedFact,
+      });
+    }
+
+    //if user is authorized i.e the above if conditions fails, then
+    res.status(401).json({
+      success: false,
+      error: "You are not authorized to update this resource",
     });
   } catch (error) {
     console.log(error);
@@ -105,10 +116,21 @@ router.put("/:id", async (req, res) => {
 //delete an idea
 router.delete("/:id", async (req, res) => {
   try {
-    await Fact.findByIdAndDelete(req.params.id);
-    res.json({
-      success: true,
-      data: {},
+    const fact = await Fact.findById(req.params.id);
+
+    //Checking if the user is authorized to delete the fact, and if it matches, then
+    if (fact.username === req.body.username) {
+      await Fact.findByIdAndDelete(req.params.id);
+      return res.json({
+        success: true,
+        data: {},
+      });
+    }
+
+    //if the user doesnot match
+    res.status(401).json({
+      success: false,
+      error: "You are not authorized to delete this resource",
     });
   } catch (error) {
     console.log(error);
