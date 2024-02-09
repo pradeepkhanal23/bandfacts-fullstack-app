@@ -22,6 +22,11 @@ class Form {
                 id="username"
                 name="username"
                 class="form-input w-full"
+                value="${
+                  localStorage.getItem("username")
+                    ? localStorage.getItem("username")
+                    : ""
+                }"
               />
             </div>
             <div class="mb-4">
@@ -59,25 +64,6 @@ class Form {
     this.eventHandlers();
   }
 
-  //method to add user to the local storage for future username validation in the server where only permitted user can alter the fact card (mimicking the user authentication based on username)
-  addUserToLocalStorage(username) {
-    let usernames;
-
-    if (localStorage.getItem("usernames") === null) {
-      //if there is nothing in local storage named "usernames" to store user, we then create an array of usernames to store the respective user's name
-      usernames = [];
-    } else {
-      // if there is any username , we pulled the array out by using the JSON parse method
-      usernames = JSON.parse(localStorage.getItem("usernames"));
-
-      //pushed the passed username to be added in the local storage
-      usernames.push(username);
-
-      //again pushed it back to the local storage by Stringifying it and storting again
-      localStorage.setItem("usernames", JSON.stringify(username));
-    }
-  }
-
   //handle Submit Function
   async handleSubmit(e) {
     e.preventDefault();
@@ -94,7 +80,7 @@ class Form {
     } else {
       try {
         //adding the user to the local storage
-        this.addUserToLocalStorage(username);
+        localStorage.setItem("username", username);
 
         const fact = {
           username,
@@ -119,6 +105,8 @@ class Form {
     this.form.elements.username.value = "";
     this.form.elements.text.value = "";
     this.form.elements.tag.value = "";
+
+    this.render();
 
     //because there is no connection between modal and form , we want a create and dispatch a new Event object and listen for it in the modal component, we have dispatched a closeModal event from this component
     document.dispatchEvent(new Event("closeModal"));
