@@ -94,8 +94,6 @@ class Form {
         //adding the fact to the list
         //we brought the FactsList's method here by instanciating it in the constructor , to add the newly created fact in the list and see the update on the list instantly as soon as we submit the form
         this.factList.addFactToTheList(newFact.data.data);
-
-        console.log(newFact);
       } catch (error) {
         console.log(error);
       }

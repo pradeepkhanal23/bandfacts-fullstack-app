@@ -78,16 +78,19 @@ class FactsList {
     let cardsHTML = ""; // instead of overwriting everytime, we initialize a varaible called cardsHTML for all cards to be accumulated and displayed
     this.facts.map((fact) => {
       const { username, text, tag, date, _id } = fact;
+
+      // formatting the date to a specific format
+      // const formattedDate = new Date().toLocaleString("en-AU");
+
       const tagClass = this.getTagClass(tag);
 
       cardsHTML += `
         <article class="card relative" data-id=${_id}>
-          <div class="mb-4 flex justify-between">
+          <div class="mb-4 flex justify-between items-center">
             <div class="flex  items-center gap-2">
               <span class="${tagClass} user-profile-box"><i class="fa-regular fa-user"></i></span>
               <span class="user-name ">${username}</span>
             </div>
-            <span class="timestamp">${date}</span>
             ${
               username === localStorage.getItem("username")
                 ? `<button class="btn-delete cursor-pointer">
@@ -95,9 +98,19 @@ class FactsList {
             </button>`
                 : ""
             }
+            ${
+              username === localStorage.getItem("username")
+                ? `<button class="btn-edit cursor-pointer">
+              <i class="fa-solid fa-edit"></i>
+            </button>`
+                : ""
+            }
           </div>
           <p class="paragraph mb-3 ">${text}</p>
           <span class="tag ${tagClass}">${tag}</span>
+          <div class="mt-3 flex items-center gap-2">
+            <h4 class="text-nowrap"> Posted on</h4><span class="timestamp">${date}</span>
+          </div>
         </article>
     `;
     });

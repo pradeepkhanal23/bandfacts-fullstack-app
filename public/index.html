@@ -14,18 +14,17 @@
     <title>BandFacts FullStack App</title>
   <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
   <body class="bg-[#f5f5f5]">
-    <main class="mx-auto px-4 py-8">
-      <h1 class="mb-8 text-5xl font-bold text-center title">Band Facts</h1>
-      <p class="text-center mb-8 max-w-4xl text-2xl mx-auto paragraph">
-        Band Facts is an app where users can share interesting facts about their
-        favorite bands. From iconic albums to legendary performances, discover
-        fascinating trivia about the music industry's most influential
-        personalities.
+    <main class="mx-auto px-4 py-8 max-w-7xl">
+      <h1 class="mb-8 text-4xl font-bold text-center title">
+        Band Facts & Trivia
+      </h1>
+      <p class="text-center mb-8 max-w-3xl text-xl mx-auto paragraph">
+        Discover and share facts about fascinating trivia of the music
+        industry's most influential personalities and bands.
       </p>
 
       <!-- Cards Section -->
-      <section class="card-wrapper p-3">
-        <!-- Card 1 -->
+      <section class="card-wrapper p-3" id="card-container">
         <article class="card relative">
           <div class="mb-4 flex justify-between">
             <div class="flex items-center gap-2">
@@ -35,7 +34,7 @@
               ></span>
               <span class="user-name">Metallicahead </span>
             </div>
-            <span>Feb 7, 2024</span>
+            <span class="timestamp">Feb 7, 2024</span>
             <button class="btn-delete cursor-pointer">
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -46,123 +45,15 @@
           </p>
           <span class="tag tag-blue">Metal</span>
         </article>
-
-        <!-- Card 2 -->
-        <article class="card relative">
-          <div class="mb-4 flex justify-between">
-            <div class="flex items-center gap-2">
-              <span class="tag-gray user-profile-box"
-                ><i class="fa-regular fa-user"></i
-              ></span>
-              <span class="user-name">The Beatles </span>
-            </div>
-            <span>Feb 7, 2024</span>
-            <button class="btn-delete cursor-pointer">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <p class="mb-3 paragraph">
-            The Beatles hold the record for the most number-one hits on the
-            Billboard Hot 100 chart.
-          </p>
-          <span class="tag tag-gray">Rock</span>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="card relative">
-          <div class="mb-4 flex justify-between">
-            <div class="flex items-center gap-2">
-              <span class="tag-green user-profile-box"
-                ><i class="fa-regular fa-user"></i
-              ></span>
-              <span class="user-name">Led Zeppelin </span>
-            </div>
-            <span>Feb 7, 2024</span>
-            <button class="btn-delete cursor-pointer">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <p class="mb-3 paragraph">
-            Led Zeppelin's "Stairway to Heaven" is often considered one of the
-            greatest rock songs of all time.
-          </p>
-          <span class="tag tag-green">Classic Rock</span>
-        </article>
-
-        <!-- Card 4 -->
-        <article class="card relative">
-          <div class="mb-4 flex justify-between">
-            <div class="flex items-center gap-2">
-              <span class="tag-yellow user-profile-box"
-                ><i class="fa-regular fa-user"></i
-              ></span>
-              <span class="user-name">Nirvana </span>
-            </div>
-            <span>Feb 7, 2024</span>
-            <button class="btn-delete cursor-pointer">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <p class="mb-3 paragraph">
-            Nirvana's "Smells Like Teen Spirit" is often credited with
-            popularizing grunge music.
-          </p>
-          <span class="tag tag-yellow">Grunge</span>
-        </article>
-
-        <!-- Card 5 -->
-        <article class="card relative">
-          <div class="mb-4 flex justify-between">
-            <div class="flex items-center gap-2">
-              <span class="tag-red user-profile-box"
-                ><i class="fa-regular fa-user"></i
-              ></span>
-              <span class="user-name">Queen </span>
-            </div>
-            <span>Feb 7, 2024</span>
-            <button class="btn-delete cursor-pointer">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <p class="mb-3 paragraph">
-            Queen's "Bohemian Rhapsody" is considered one of the greatest rock
-            songs of all time.
-          </p>
-          <span class="tag tag-red">Rock</span>
-        </article>
-
-        <!-- Card 6 -->
-        <article class="card relative">
-          <div class="mb-4 flex justify-between">
-            <div class="flex items-center gap-2">
-              <span class="tag-purple user-profile-box"
-                ><i class="fa-regular fa-user"></i
-              ></span>
-              <span class="user-name">Pink Floyd </span>
-            </div>
-            <span>Feb 7, 2024</span>
-            <button class="btn-delete cursor-pointer">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <p class="mb-3 paragraph">
-            Pink Floyd's album "The Dark Side of the Moon" spent over 900 weeks
-            on the Billboard 200 chart.
-          </p>
-          <span class="tag tag-purple">Progressive Rock</span>
-        </article>
       </section>
 
-      <button class="btn mx-auto my-5">Create new Fact</button>
+      <button class="btn mx-auto my-5" id="create-btn">Create new Fact</button>
 
       <!-- Modal -->
       <section id="myModal" class="modal hidden">
         <!-- Modal content -->
-        <div class="bg-white p-8 rounded-lg shadow-lg min-w-96">
-          <div class="mb-4">
-            <h2 class="text-2xl font-semibold text-center">Create Band Fact</h2>
-          </div>
-          <form id="fact-form">
+        <div class="bg-white p-8 rounded-lg shadow-lg min-w-96" id="form-modal">
+          <!-- <form id="fact-form">
             <div class="mb-4">
               <label for="username" class="text-label">Username</label>
               <input
@@ -198,7 +89,7 @@
                 Submit
               </button>
             </div>
-          </form>
+          </form> -->
         </div>
       </section>
     </main>

@@ -13,7 +13,7 @@ body {
 }
 
 .card {
-  @apply rounded-lg bg-white p-6 shadow-lg text-lg;
+  @apply rounded-lg bg-white p-6 text-lg text-gray-400 shadow-lg;
 }
 
 .modal {
@@ -29,7 +29,7 @@ body {
 }
 
 .user-name {
-  @apply text-zinc-500 tracking-tight capitalize;
+  @apply text-zinc-600 tracking-tight capitalize;
 }
 
 .timestamp {
@@ -54,6 +54,10 @@ body {
 
 .btn-delete {
   @apply absolute -top-2 -right-2 bg-red-400 text-white  flex items-center  justify-center h-5 w-5;
+}
+
+.btn-edit {
+  @apply text-[#6b7280]  flex items-center justify-center h-5 w-5;
 }
 
 .form-input,

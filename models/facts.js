@@ -7,8 +7,8 @@ const factSchema = new mongoose.Schema({
     required: [true, "username is required"],
   },
   date: {
-    type: String,
-    default: Date.now(),
+    type: Date,
+    default: Date.now,
   },
   tag: {
     type: String,
