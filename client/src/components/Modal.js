@@ -11,11 +11,16 @@ class Modal {
     document.addEventListener("closeModal", () => {
       this.close();
     });
+    document.addEventListener("openModal", () => {
+      this.open();
+    });
   }
 
   outsideClose(e) {
     if (e.target === this.modal) {
       this.close();
+
+      document.dispatchEvent(new Event("outsideEditClose"));
     }
   }
 

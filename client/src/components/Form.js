@@ -5,15 +5,74 @@ class Form {
   constructor() {
     this.formModal = document.querySelector("#form-modal");
     this.factList = new FactsList();
+    this.editMode = false;
   }
 
   eventHandlers() {
-    this.form.addEventListener("submit", this.handleSubmit.bind(this));
+    //handling form submission
+    if (this.form) {
+      this.form.addEventListener("submit", (e) => {
+        if (this.editMode) {
+          this.handleEdit(e);
+        } else {
+          this.handleSubmit(e);
+        }
+      });
+    }
+
+    document.addEventListener("outsideEditClose", () => {
+      //setting the edit flag to false to cancel edit mode if the user decides to cancel and click outside
+      this.editMode = false;
+
+      //rendering the form again to have noraml submit button form when user cancels the edit mode and clicks outside
+      this.render();
+    });
+
+    document.addEventListener("editModeOff", () => {
+      this.editMode = false;
+      this.render();
+    });
+
+    document.addEventListener("editModeOn", () => {
+      //setting the edit flag to true to conditionally render the form
+      this.editMode = true;
+
+      //rendering the form to have a different display, because we have setup a conditional rendering based on the edit flag to the form
+      this.render();
+    });
+
+    document.addEventListener("editFact", (e) => {
+      const id = e.detail;
+
+      this.populateEditForm(id);
+
+      //opening the modal by dispatching the event which is being listened in modal component
+      document.dispatchEvent(new Event("openModal"));
+    });
+  }
+
+  clearForm() {
+    this.form.elements.username.value = "";
+    this.form.elements.text.value = "";
+    this.form.elements.tag.value = "";
+  }
+
+  async populateEditForm(factId) {
+    //calling a method in factList that fetches the fact via given id
+    const fact = await this.factList.getFactById(factId);
+
+    //filling up the form values with the fetched results
+    this.form.elements.text.value = fact.text;
+    this.form.elements.tag.value = fact.tag;
+    this.form.setAttribute("data-id", factId);
   }
 
   render() {
+    const usernameValue = localStorage.getItem("username") || "";
+    const usernameDisabled = this.editMode ? "disabled" : "";
+    const editButton = this.editMode ? "Update Fact" : "Submit";
+
     this.formModal.innerHTML = `
-    
       <form id="fact-form">
             <div class="mb-4">
               <label for="username" class="text-label">Username</label>
@@ -22,11 +81,9 @@ class Form {
                 id="username"
                 name="username"
                 class="form-input w-full"
-                value="${
-                  localStorage.getItem("username")
-                    ? localStorage.getItem("username")
-                    : ""
-                }"
+                value="${usernameValue}"
+                autocomplete="off"
+                ${usernameDisabled}
               />
             </div>
             <div class="mb-4">
@@ -35,6 +92,7 @@ class Form {
                 id="text"
                 name="text"
                 class="form-textarea w-full"
+                autocomplete="off"
               ></textarea>
             </div>
             <div class="mb-4">
@@ -43,6 +101,7 @@ class Form {
                 type="text"
                 id="tag"
                 name="tag"
+                autocomplete="off"
                 class="form-input w-full"
               />
             </div>
@@ -52,7 +111,7 @@ class Form {
                 type="submit"
                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               >
-                Submit
+              ${editButton}
               </button>
             </div>
           </form>
@@ -100,15 +159,45 @@ class Form {
     }
 
     //clearing the form fields
-    this.form.elements.username.value = "";
-    this.form.elements.text.value = "";
-    this.form.elements.tag.value = "";
+    this.clearForm();
 
+    //rendering the form
     this.render();
 
     //because there is no connection between modal and form , we want a create and dispatch a new Event object and listen for it in the modal component, we have dispatched a closeModal event from this component
     document.dispatchEvent(new Event("closeModal"));
     //make sure the event is inside a parenthesis i.e "event-name" : "closeModal" in this case
+  }
+
+  async handleEdit(e) {
+    e.preventDefault();
+
+    //getting the values from the prefilled form
+    const id = this.form.getAttribute("data-id");
+    const text = this.form.elements.text.value;
+    const tag = this.form.elements.tag.value;
+
+    //checking the user input again for vaidation
+    if (text === "" || tag === "") {
+      alert("Please provide the edit values to update the fact");
+    } else {
+      try {
+        //making an api call to the api service module that takes an id and data as parameter which again calls the put method from our backend routes
+        await factsApiService.updateFact(id, { text, tag });
+
+        //after updating, we fetch the facts again to see the latest updated facts list
+        this.factList.getFacts();
+
+        //once the facts are updated, we dispatch the closeModal event
+        document.dispatchEvent(new Event("closeModal"));
+
+        //we also turn off the edit Mode since we are done with the editing
+        document.dispatchEvent(new Event("editModeOff"));
+      } catch (error) {
+        console.log(error);
+        alert("Couldnt update the resource");
+      }
+    }
   }
 }
 

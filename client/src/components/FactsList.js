@@ -18,6 +18,7 @@ class FactsList {
   }
 
   addEventListeners() {
+    // ------------Handling Delete----------------------------------------
     // we are using event delegation here, as the cards are not there in the DOM , we used JS to create and render them, so we gave the responsibilty to its card container(which is card's parent) to handle the event properly
     this.cardContainer.addEventListener("click", (e) => {
       if (e.target.classList.contains("fa-xmark")) {
@@ -33,6 +34,31 @@ class FactsList {
         this.deleteFact(id);
       }
     });
+
+    // ---------------------Handling Edit--------------------------------------
+    // we are using event delegation here, as the cards are not there in the DOM , we used JS to create and render them, so we gave the responsibilty to its card container(which is card's parent) to handle the event properly
+    this.cardContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("fa-edit")) {
+        e.stopImmediatePropagation();
+
+        const id =
+          e.target.parentElement.parentElement.parentElement.getAttribute(
+            "data-id"
+          );
+
+        //we are creating a custom event on the edit button click , and we will listen for this event in the Form component, because we need to populate the form by fetching the selected card with a specific id, which we can get from getFactById(id) method, that is inside the api services module
+
+        //also we are turning the edit mode on to handle edit operations nicely with both the form and submit button that acts different when we are in the edit mode
+
+        // we are also passing the id as a detail to extract in in Form component
+        document.dispatchEvent(
+          new CustomEvent("editFact", {
+            detail: id,
+          })
+        );
+        document.dispatchEvent(new Event("editModeOn"));
+      }
+    });
   }
 
   async getFacts() {
@@ -45,6 +71,25 @@ class FactsList {
     }
   }
 
+  async getFactById(id) {
+    try {
+      const res = await FactsApiService.getFactById(id);
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async updateFacts(id) {
+    try {
+      await FactsApiService.updateFact(id);
+      this.getFacts();
+      this.render();
+    } catch (error) {
+      alert("You can not update this resource");
+    }
+  }
+
   async deleteFact(id) {
     try {
       //deletes from the server
@@ -52,6 +97,8 @@ class FactsList {
 
       //deleting from the DOM
       this.facts.filter((fact) => fact._id !== id);
+
+      //fetching updated fatcs list after deletion
       this.getFacts();
     } catch (error) {
       alert("You can not delete this resource");
